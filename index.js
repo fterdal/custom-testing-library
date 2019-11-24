@@ -62,6 +62,11 @@ function it(label, testFn) {
   })
 }
 
+// It blocks should be able to run on their own, but this one doesn't.
+// This is because Mocha uses global context to register tests, rather than
+// the containing function scope.
+// it("passing test", function() {})
+
 describe("Some Tests Go Here", function() {
   it("passing test", function() {})
   it("failing test", function() {
