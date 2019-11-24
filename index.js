@@ -23,7 +23,6 @@ function describe(label, testsFn) {
       try {
         test.testFn()
         completedTests.push({ ...test, passing: true })
-        // console.log(green(`✅ ${test.id}.) ${test.label}`))
         logSuccess(`✅ ${test.id}.) ${test.label}`, 1)
       } catch (err) {
         completedTests.push({ ...test, passing: false, err })
@@ -31,8 +30,18 @@ function describe(label, testsFn) {
       }
     })
 
-    completedTests
-      .filter(test => !test.passing)
+    const passingTests = completedTests.filter(test => test.passing)
+    const failingTests = completedTests.filter(test => !test.passing)
+
+    console.log('')
+    if (passingTests.length) {
+      console.log(green(`${passingTests.length} passing`))
+    }
+    if (failingTests.length) {
+      console.log(red(`${failingTests.length} failing`))
+    }
+
+    failingTests
       .forEach(failingTest => {
         console.log("")
         console.log(red(`🔴 ${failingTest.id}.) ${failingTest.label}`))
@@ -57,6 +66,11 @@ describe("Some Tests Go Here", function() {
   it("passing test", function() {})
   it("failing test", function() {
     throw new Error("Something went wrong")
+  })
+  describe("Some Other Tests Go Here", function() {
+    it("failing test", function() {
+      throw new Error("Something went wrong")
+    })
   })
   it("another passing test", function() {})
 })
