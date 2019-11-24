@@ -72,10 +72,10 @@ describe("Some Tests Go Here", function() {
   it("failing test", function() {
     throw new Error("Something went wrong")
   })
-  describe("Some Other Tests Go Here", function() {
-    it("failing test", function() {
-      throw new Error("Something went wrong")
-    })
-  })
+  // describe("Some Other Tests Go Here", function() {
+  //   it("failing test", function() {
+  //     throw new Error("Something went wrong")
+  //   })
+  // })
   it("another passing test", function() {})
 })
